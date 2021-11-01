@@ -1,5 +1,5 @@
 from selenium import webdriver
-from src.env.file import get_process_dir
+from src.app.file import get_process_dir
 import time, logging, os
 
 chrome_options = webdriver.ChromeOptions()

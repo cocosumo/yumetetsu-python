@@ -7,7 +7,7 @@ def type_username():
   username_element.send_keys(username)
 
 def type_password():
-  password = os.getenv('KINTONE_PASSWORD')
+  password = os.getenv('KINTONE_PASS')
   password_element = chrome.find_element_by_name("password")
   password_element.send_keys(password)
 

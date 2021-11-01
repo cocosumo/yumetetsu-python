@@ -1,14 +1,11 @@
 import pandas as pd
 import os, glob, shutil
-from dotenv import load_dotenv
-
-load_dotenv()
 
 project_name = "scrape_donet_bukken"
 grouped_folder = "grouped"
 
 def get_process_dir():
-  process_path = os.path.join(os.path.join(os.path.dirname(__file__),'dump_files'))
+  process_path = os.path.join(os.path.join(os.path.dirname(__file__),'downloads'))
   grouped_path = os.path.join(process_path, grouped_folder)
 
   if not os.path.exists(grouped_path):

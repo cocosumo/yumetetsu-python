@@ -1,8 +1,11 @@
 
-from src.env.browser import close_browser
+from src.app.browser import close_browser
 from src.kintone.upload import upload_to_kintone
 from src.donetwork.properties import download_from_donet_properties
-from src.env.file import process_files, remove_dir
+from src.app.file import process_files, remove_dir
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def init_env():
   print("Starting program.")
@@ -22,5 +25,8 @@ def main():
   clean()
 
 
+
 if __name__ == "__main__":
   main()
+
+
