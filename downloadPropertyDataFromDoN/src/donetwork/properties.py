@@ -6,6 +6,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 
 def navigate_to_properties():
+  print("Navigating to properties folder.")
   chrome.get('https://manage.do-network.com/estate?_reset')
 
 def get_shop_select():

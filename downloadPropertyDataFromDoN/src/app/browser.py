@@ -1,9 +1,14 @@
 from selenium import webdriver
 from src.app.file import get_process_dir
 import time, logging, os
+from fake_useragent import UserAgent
 
+ua = UserAgent()
+userAgent = ua.random
+print(userAgent)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+chrome_options.add_argument(f'user-agent={userAgent}')
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--headless")
 chrome_options.add_experimental_option("prefs", {

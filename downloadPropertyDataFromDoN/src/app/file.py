@@ -24,11 +24,14 @@ def clear_dir(dir = get_process_dir()):
     os.remove(os.path.join(dir, f))
 
 def remove_dir(dir = get_process_dir()):
-  print("Removing entire directory.")
+  print("Removing entire temp directory.")
   try:
     shutil.rmtree(dir)
   except OSError as e:
     print("Error: %s : %s" % (dir, e.strerror))
+    exit()
+
+
 
 def save_dt_tocsv(dt, path):
   print("Saving to : ", path)

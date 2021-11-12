@@ -29,7 +29,7 @@ def confirm_first_line_is_header():
   WebDriverWait(chrome, timeout=30).until(
         EC.presence_of_element_located((By.ID, "30"))
       )
-  chrome.execute_script("$('#30').click()")
+  chrome.execute_script("document.getElementById(30).click()")
 
 def set_chkbox_key():
   el = WebDriverWait(chrome, timeout=30).until(

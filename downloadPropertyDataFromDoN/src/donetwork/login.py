@@ -26,6 +26,7 @@ def click_submit():
 
 
 def login_to_donetwork():
+  print("Logging in to donetwork.")
   chrome.get(('https://manage.do-network.com/login/134'))
   type_username()
   type_password()
