@@ -33,9 +33,11 @@ def remove_dir(dir = get_process_dir()):
       if (os.path.exists(dir)):
         print("Remove dir done.")
         shutil.rmtree(dir)
+        break
     except OSError as e:
       print("Error: %s : %s" % (dir, e.strerror))
       time.sleep(1)
+      continue
 
 
 
