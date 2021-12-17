@@ -4,13 +4,13 @@ import time, logging, os
 from fake_useragent import UserAgent
 
 ua = UserAgent()
-userAgent = ua.random
+userAgent = ua.chrome
 print(userAgent)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 chrome_options.add_argument(f'user-agent={userAgent}')
-chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--headless")
+#chrome_options.add_argument("--disable-gpu")
+#chrome_options.add_argument("--headless")
 chrome_options.add_experimental_option("prefs", {
     "profile.managed_default_content_settings.images": 2,
     'download.default_directory': get_process_dir()

@@ -1,5 +1,6 @@
 import pandas as pd
 import os, glob, shutil
+import time
 
 project_name = "scrape_donet_bukken"
 grouped_folder = "grouped"
@@ -25,11 +26,20 @@ def clear_dir(dir = get_process_dir()):
 
 def remove_dir(dir = get_process_dir()):
   print("Removing entire temp directory.")
-  try:
-    shutil.rmtree(dir)
-  except OSError as e:
-    print("Error: %s : %s" % (dir, e.strerror))
-    exit()
+  print(os.path.exists(dir), dir)
+
+  for i in range(0,10):
+    try:
+      if (os.path.exists(dir)):
+        shutil.rmtree(dir)
+    except OSError as e:
+      print("Error: %s : %s" % (dir, e.strerror))
+      time.sleep(1)
+
+
+
+
+
 
 
 

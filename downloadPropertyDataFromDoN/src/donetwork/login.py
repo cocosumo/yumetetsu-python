@@ -5,12 +5,12 @@ import os
 
 def type_username():
   username = os.getenv('DONET_USER')
-  username_element = chrome.find_element_by_class_name("username")
+  username_element = chrome.find_element_by_name("user_id")
   username_element.send_keys(username)
 
 def type_password():
   password = os.getenv('DONET_PASS')
-  password_element = chrome.find_element_by_class_name("password")
+  password_element = chrome.find_element_by_name("password")
   password_element.send_keys(password)
 
 def select_shop():
@@ -19,7 +19,7 @@ def select_shop():
   select_object.select_by_value("157")
 
 def click_submit():
-  submit_button_element = chrome.find_element_by_class_name("login_btn")
+  submit_button_element = chrome.find_element_by_class_name("btn_login")
   chrome.execute_script("$(arguments[0]).click();", submit_button_element)
   print(submit_button_element)
   submit_button_element

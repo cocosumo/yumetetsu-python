@@ -14,7 +14,8 @@ def init_env():
 def clean():
   close_browser()
   print("終りました！ｷﾝﾄｰﾝでアップロードが成功したか、ご確認ください。")
-  #remove_dir()
+  remove_dir()
+  exit()
 
 
 def main():
