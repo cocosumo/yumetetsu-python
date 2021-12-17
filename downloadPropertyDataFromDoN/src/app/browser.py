@@ -56,4 +56,4 @@ def wait_for_downloads(dir):
 
 def close_browser():
   print("Closing browser.")
-  chrome.close()
+  chrome.quit()

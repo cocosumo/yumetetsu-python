@@ -28,9 +28,10 @@ def remove_dir(dir = get_process_dir()):
   print("Removing entire temp directory.")
   print(os.path.exists(dir), dir)
 
-  for i in range(0,10):
+  for i in range(0,3):
     try:
       if (os.path.exists(dir)):
+        print("Remove dir done.")
         shutil.rmtree(dir)
     except OSError as e:
       print("Error: %s : %s" % (dir, e.strerror))

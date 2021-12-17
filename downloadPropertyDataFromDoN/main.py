@@ -19,6 +19,7 @@ def clean():
 
 
 def main():
+  print("starting program")
   init_env()
   download_from_donet_properties()
   process_files()
