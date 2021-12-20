@@ -1,0 +1,10 @@
+domain: xxx
+login:
+    id: user_id
+    password: password
+basic:
+    id: basic_id
+    password: password
+apps:
+    test:
+        id: 1
