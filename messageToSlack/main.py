@@ -24,7 +24,10 @@ def sendMessage(message):
       # Call the conversations.list method using the WebClient
       result = client.chat_postMessage(
           channel=channel_id,
-          text=message
+          text=message,
+          blocks=[
+            {"type": "section", "text": {"type": "mrkdwn", "text": "*message*"}}
+          ]
           # You could also use a blocks[] array to send richer content
       )
       # Print result, which includes information about the message (like TS)

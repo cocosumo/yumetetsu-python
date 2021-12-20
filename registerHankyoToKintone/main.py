@@ -4,6 +4,8 @@ import os
 import pykintone
 
 from src.model.Hankyo import Hankyo
+from src.helper.slack import sendToSlackFormatted
+from src.helper.args import getArgByIdx
 
 #Environment variable loader
 from dotenv import load_dotenv
@@ -15,7 +17,7 @@ currentPath = pathlib.Path(__file__).parent.resolve()
 account = pykintone.load(os.path.join(currentPath, "account.yml"))
 app = account.app()
 
-def registerToKintone(title="無", main="無", mail_to="無", mail_from="無"):
+def registerToKintone(title, main, mail_to, mail_from):
   try:
     print("Trying to register.")
     record = Hankyo()
@@ -24,16 +26,15 @@ def registerToKintone(title="無", main="無", mail_to="無", mail_from="無"):
     record.mail_to = mail_to
     record.mail_from  = mail_from
     result = app.create(record)
-    print (f"Record Id: {result.record_id} ")
+    return result.record_id
   except:
     print("Failed")
 
 def main():
+  _title = getArgByIdx(1)
+  record_id = registerToKintone(title=_title, main=getArgByIdx(2), mail_to=getArgByIdx(3), mail_from=getArgByIdx(4))
 
-  if(len(sys.argv) == 5):
-    registerToKintone(title=sys.argv[1], main=sys.argv[2], mail_to=sys.argv[3], mail_from=sys.argv[4])
-  else:
-    registerToKintone()
+  sendToSlackFormatted(record_id, _title)
 
 if __name__ == "__main__":
   main()
