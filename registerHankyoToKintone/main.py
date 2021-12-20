@@ -1,4 +1,3 @@
-import sys
 import os
 
 import pykintone
@@ -31,13 +30,16 @@ def registerToKintone(title, main, mailTo, mailFrom):
   except:
     print("Failed")
 
-# ArgsIdx
-# 1 = title
-# 2 = main
-# 3 = mailTo
-# 4 = mailFrom
+
 
 def main():
+
+  # ArgsIdx
+  # 1 = title
+  # 2 = main
+  # 3 = mailTo
+  # 4 = mailFrom
+
   _title = getArgByIdx(1)
   _mailTo = getArgByIdx(3)
 
