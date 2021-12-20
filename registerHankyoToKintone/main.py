@@ -13,7 +13,7 @@ load_dotenv()
 
 #Initialize App
 import pathlib
-currentPath = pathlib.Path().resolve()
+currentPath = pathlib.Path(__file__).parent.resolve()
 print("current", currentPath)
 account = pykintone.load(os.path.join(currentPath, "account.yml"))
 app = account.app()
