@@ -28,7 +28,7 @@ def registerToKintone(title, main, mailTo, mailFrom):
     record.main = main
     record.mail_to = mailTo
     record.mail_from  = mailFrom
-    #result = app.create(record)
+    result = app.create(record)
     print(result.record_id, "result")
     return result.record_id
   except:
@@ -50,7 +50,7 @@ def main():
 
   _recordId = registerToKintone(title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=getArgByIdx(4))
 
-  #sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)
+  sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)
 
 if __name__ == "__main__":
   main()
