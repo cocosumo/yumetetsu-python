@@ -54,7 +54,7 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
             "text":
               {
                 "type": "mrkdwn",
-                "text": f"*差出人：* {mailTo} \n *宛先：* {mailFrom} \n *件名：* {title}"
+                "text": f"*差出人：* {mailFrom} \n *宛先：* {mailTo} \n *件名：* {title}"
               }
             },
             {
