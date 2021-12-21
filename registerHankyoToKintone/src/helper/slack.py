@@ -28,7 +28,9 @@ def sendToSlack(recordId, title):
 
 def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
 
-  message = f"\"新たな反響がありました。*{title}* {generateEditLink(recordId)} \""
+  messageHeader = "メール" if ("テスト" in title) else "反響"
+  print(messageHeader,("テスト" in title) )
+  message = f"\"新たな{messageHeader}がありました。*{title}* {generateEditLink(recordId)} \""
   _channel_id = getGroupIdByMailBox(mailTo)
   _app_id = getAppIdByMailBox(mailTo)
 
@@ -46,7 +48,7 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
              "text":
               {
                 "type": "plain_text",
-                "text": "新たな反響がありました。"
+                "text": f"新たな{messageHeader}がありました。"
               }
             },
             {
@@ -73,3 +75,5 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
       print(result)
   except SlackApiError as e:
       print(f"Error: {e}")
+
+
