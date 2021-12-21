@@ -28,7 +28,7 @@ def registerToKintone(title, main, mailTo, mailFrom):
     record.main = main
     record.mail_to = mailTo
     record.mail_from  = mailFrom
-    result = app.create(record)
+    #result = app.create(record)
     print(result.record_id, "result")
     return result.record_id
   except:
