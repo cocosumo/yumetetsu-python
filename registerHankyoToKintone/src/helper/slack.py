@@ -1,6 +1,6 @@
 import os
 
-from src.helper.utils import getGroupIdByMailBox
+from src.helper.utils import getAppIdByMailBox, getGroupIdByMailBox
 
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
@@ -26,10 +26,11 @@ def sendToSlack(recordId, title):
   message = f"\"新たな反響がありました。*{title}* {generateEditLink(recordId)} \""
   os.system(f"py {_slackMainFile} {message}")
 
-def sendToSlackFormatted(recordId, title, mailTo):
+def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
 
   message = f"\"新たな反響がありました。*{title}* {generateEditLink(recordId)} \""
   _channel_id = getGroupIdByMailBox(mailTo)
+  _app_id = getAppIdByMailBox(mailTo)
 
   print(f"Sending to {mailTo} : {_channel_id} ")
 
@@ -41,19 +42,11 @@ def sendToSlackFormatted(recordId, title, mailTo):
           text=message,
           blocks=[
             {
-            "type": "section",
+            "type": "header",
              "text":
               {
                 "type": "plain_text",
-                "text": "新な反響がありました。"
-              }
-            },
-            {
-            "type": "header",
-            "text":
-              {
-                "type": "plain_text",
-                "text": title
+                "text": "新たな反響がありました。"
               }
             },
             {
@@ -61,9 +54,17 @@ def sendToSlackFormatted(recordId, title, mailTo):
             "text":
               {
                 "type": "mrkdwn",
-                "text": f"*<{_kintoneDomain}/k/155/show#record={recordId}|Kintoneで開く>*"
+                "text": f"*差出人：* {mailTo} \n *宛先：* {mailFrom} \n *件名：* {title}"
               }
-            }
+            },
+            {
+            "type": "section",
+            "text":
+              {
+                "type": "mrkdwn",
+                "text": f"*<{_kintoneDomain}/k/{_app_id}/show#record={recordId}|Kintoneで開く>*"
+              },
+            },
 
           ]
 
