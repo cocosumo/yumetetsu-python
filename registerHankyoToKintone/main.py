@@ -50,7 +50,7 @@ def main():
 
   _recordId = registerToKintone(title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=getArgByIdx(4))
 
-  sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)
+  #sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)
 
 if __name__ == "__main__":
   main()
