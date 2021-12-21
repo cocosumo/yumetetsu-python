@@ -7,11 +7,13 @@ load_dotenv()
 # Refactor redundant code.
 
 def getGroupIdByMailBox(mailBox):
+  print(f"Retrieving Channel id : {mailBox}")
   if (mailBox in ["fujisawa@yumetetsu.jp", "toyohashi@yumetetsu.jp"]):
     return os.getenv('SLACK_CHANNEL_ID_FUJISAWA')
   elif (mailBox in ["yawata@yumetetsu.jp", "info@yumetetsu.jp"]):
     return os.getenv('SLACK_CHANNEL_ID_TOYOKAWA')
   else:
+    print("Failed to find Channnel Id. Fallback to test.")
     return os.getenv('SLACK_CHANNEL_ID_TEST')
 
 def getAppIdByMailBox(mailBox):

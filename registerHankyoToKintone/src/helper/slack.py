@@ -27,11 +27,11 @@ def sendToSlack(recordId, title):
   os.system(f"py {_slackMainFile} {message}")
 
 def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
-
-  messageHeader = "メール" if ("テスト" in title) else "反響"
-  print(messageHeader,("テスト" in title) )
+  isTest = ("テスト" in title)
+  messageHeader = "メール" if isTest else "反響"
+  print(messageHeader, isTest )
   message = f"\"新たな{messageHeader}がありました。*{title}* {generateEditLink(recordId)} \""
-  _channel_id = getGroupIdByMailBox(mailTo)
+  _channel_id = getGroupIdByMailBox("テスト") if isTest else getGroupIdByMailBox(mailTo)
   _app_id = getAppIdByMailBox(mailTo)
 
   print(f"Sending to {mailTo} : {_channel_id} ")
