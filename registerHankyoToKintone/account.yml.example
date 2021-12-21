@@ -1,10 +1,6 @@
-domain: xxx
-login:
-    id: user_id
-    password: password
-basic:
-    id: basic_id
-    password: password
+domain: rdmuhwtt6gx7
 apps:
-    test:
-        id: 1
+    toyohashi:
+        id: 167
+        token: token
+

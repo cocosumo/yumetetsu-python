@@ -131,4 +131,4 @@ dmypy.json
 
 # custom
 .csv
-account.y*ml
+account*.y*ml

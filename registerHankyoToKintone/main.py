@@ -14,12 +14,13 @@ load_dotenv()
 #Initialize App
 import pathlib
 currentPath = pathlib.Path(__file__).parent.resolve()
-account = pykintone.load(os.path.join(currentPath, "account.yml"))
+
 
 
 def registerToKintone(title, main, mailTo, mailFrom):
-  app = account.app(app_id=getAppIdByMailBox(mailTo), api_token=getAppTokenByMailBox(mailTo))
-
+  account = pykintone.load(os.path.join(currentPath, f"account-{getAppIdByMailBox(mailTo)}.yml"))
+  app = account.app()
+  print(app, f"account-{getAppIdByMailBox(mailTo)}.yml", mailTo,  "TEST")
   try:
     print("Trying to register.")
     record = Hankyo()
@@ -28,6 +29,7 @@ def registerToKintone(title, main, mailTo, mailFrom):
     record.mail_to = mailTo
     record.mail_from  = mailFrom
     result = app.create(record)
+    print(result.record_id, "result")
     return result.record_id
   except:
     print("Failed")
