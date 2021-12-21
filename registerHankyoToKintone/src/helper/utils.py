@@ -3,6 +3,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+#TODO
+# Refactor redundant code.
+
 def getGroupIdByMailBox(mailBox):
   if (mailBox in ["fujisawa@yumetetsu.jp", "toyohashi@yumetetsu.jp"]):
     return os.getenv('SLACK_CHANNEL_ID_FUJISAWA')
