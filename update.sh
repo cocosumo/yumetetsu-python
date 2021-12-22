@@ -1,6 +1,7 @@
 #!/bin/bash
 
 INTERVAL=2 #Set Interval
+currentDate=`date`
 
 while true
 do
@@ -13,7 +14,7 @@ do
 		echo "PULLING BRANCH!";
 		git pull
 	else
-		echo "BRANCH IS ALREADY UPDATED"
+		echo $currentDate " BRANCH IS ALREADY UPDATED"
 	fi
 	sleep $INTERVAL
 done
