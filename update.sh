@@ -1,4 +1,7 @@
-if ! git diff-index --quiet HEAD --; then
-    VN="$VN-mod"
-	echo changed
+#!/bin/bash
+
+GIT=$(git status)
+
+if grep -q 'behind' <<< "$GIT"; then
+	echo "FOUND!";
 fi
