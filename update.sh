@@ -1,17 +1,20 @@
 #!/bin/bash
 
-git fetch
+INTERVAL=2 #Set Interval
 
-GIT=$(git status)
+while true
+do
+	git fetch
 
-if grep -q 'behind' <<< "$GIT"; 
-then
-	echo "UPDATED";
-	git pull
-else
-	echo "ALREADY UPDATED"
-fi
-
-sleep 2
-
+	GIT=$(git status)
+	
+	if grep -q 'behind' <<< "$GIT"; 
+	then
+		echo "PULLING BRANCH!";
+		git pull
+	else
+		echo "BRANCH IS ALREADY UPDATED"
+	fi
+	sleep $INTERVAL
+done
 #test
