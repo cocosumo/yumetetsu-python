@@ -11,3 +11,5 @@ then
 else
 	echo "ALREADY UPDATED"
 fi
+
+sleep 2
