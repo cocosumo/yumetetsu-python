@@ -1,13 +1,14 @@
 #!/bin/bash
 
 INTERVAL=2 #Set Interval
-currentDate=`date`
+
 
 while true
 do
 	git fetch
 
 	GIT=$(git status)
+	currentDate=`date`
 	
 	if grep -q 'behind' <<< "$GIT"; 
 	then
