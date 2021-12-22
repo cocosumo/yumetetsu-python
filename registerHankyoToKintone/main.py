@@ -18,6 +18,8 @@ currentPath = pathlib.Path(__file__).parent.resolve()
 
 
 def registerToKintone(title, main, mailTo, mailFrom):
+  #Still not sure how to use yml so I made separate settings. 2021/12/21
+
   account = pykintone.load(os.path.join(currentPath, f"account-{getAppIdByMailBox(mailTo)}.yml"))
   app = account.app()
   print(app, f"account-{getAppIdByMailBox(mailTo)}.yml", mailTo,  "TEST")
