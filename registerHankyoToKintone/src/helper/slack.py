@@ -15,65 +15,72 @@ _kintoneDomain = os.getenv('KINTONE_DOMAIN')
 
 _client = WebClient(token=_slack_token)
 
-def generateEditLink(record_id):
-  # 例：https://rdmuhwtt6gx7.cybozu.com/k/155/show#record=23
-  return f"{_kintoneDomain}/k/155/show#record={record_id}"
 
-#deprecated
+def generateEditLink(record_id):
+    # 例：https://rdmuhwtt6gx7.cybozu.com/k/155/show#record=23
+    return f"{_kintoneDomain}/k/155/show#record={record_id}"
+
+
 def sendToSlack(recordId, title):
-  print(f"Sending record to slack: {recordId}" )
-  print(_slackMainFile)
-  message = f"\"新たな反響がありました。*{title}* {generateEditLink(recordId)} \""
-  os.system(f"py {_slackMainFile} {message}")
+    # deprecated
+    print(f"Sending record to slack: {recordId}")
+    print(_slackMainFile)
+    message = f"\"新たな反響がありました。*{title}* {generateEditLink(recordId)} \""
+    os.system(f"py {_slackMainFile} {message}")
+
 
 def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
-  isTest = ("テスト" in title)
-  messageHeader = "メール" if isTest else "反響"
-  print(messageHeader, isTest )
-  message = f"\"新たな{messageHeader}がありました。*{title}* {generateEditLink(recordId)} \""
-  _channel_id = getGroupIdByMailBox("テスト") if isTest else getGroupIdByMailBox(mailTo)
-  _app_id = getAppIdByMailBox(mailTo)
+    isTest = ("テスト" in title)
+    messageHeader = "メール" if isTest else "反響"
 
-  print(f"Sending to {mailTo} : {_channel_id} ")
+    _channel_id = getGroupIdByMailBox(
+        "テスト") if isTest else getGroupIdByMailBox(mailTo)
+    _app_id = getAppIdByMailBox(mailTo)
 
-  try:
-      # Call the conversations.list method using the WebClient
-
-      result = _client.chat_postMessage(
-          channel=_channel_id,
-          text=message,
-          blocks=[
-            {
+    # Content of the message
+    _blocks = [
+        {
             "type": "header",
-             "text":
-              {
+            "text":
+            {
                 "type": "plain_text",
                 "text": f"新たな{messageHeader}がありました。"
-              }
-            },
-            {
+            }
+        },
+        {
             "type": "section",
             "text":
-              {
+            {
                 "type": "mrkdwn",
                 "text": f"*差出人：* {mailFrom} \n *宛先：* {mailTo} \n *件名：* {title}"
-              }
-            },
-            {
+            }
+        },
+
+    ]
+
+
+
+    if not recordId == None:
+        _blocks.append({
             "type": "section",
             "text":
-              {
+            {
                 "type": "mrkdwn",
                 "text": f"*<{_kintoneDomain}/k/{_app_id}/show#record={recordId}|Kintoneで開く>*"
-              },
             },
+        }
+        )
 
-          ]
+    print("recordId", recordId)
+    try:
+        # Call the conversations.list method using the WebClient
+        result = _client.chat_postMessage(
+            channel=_channel_id,
+            text=f"\"新たな{messageHeader}がありました。*{title}* {generateEditLink(recordId)} \"",
+            blocks=_blocks
 
-      )
-      # Print result, which includes information about the message (like TS)
-      print(result)
-  except SlackApiError as e:
-      print(f"Error: {e}")
-
-
+        )
+        # Print result, which includes information about the message (like TS)
+        print(result)
+    except SlackApiError as e:
+        print(f"Error: {e}")

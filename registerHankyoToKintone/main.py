@@ -18,7 +18,12 @@ currentPath = pathlib.Path(__file__).parent.resolve()
 
 
 def registerToKintone(title, main, mailTo, mailFrom):
-  #Still not sure how to use yml so I made separate settings. 2021/12/21
+  # Still not sure how to use yml so I made separate settings. 2021/12/21
+  # Decision between or hankyo or not is processed at Outlook.
+
+  isTest = ("テスト" in title)
+
+  if isTest: return # Do not register to kintone if テスト is found at title. Good when testing other parts of the process.
 
   account = pykintone.load(os.path.join(currentPath, f"account-{getAppIdByMailBox(mailTo)}.yml"))
   app = account.app()
