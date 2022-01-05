@@ -23,7 +23,7 @@ def registerToKintone(title, main, mailTo, mailFrom):
 
   isTest = ("テスト" in title)
 
-  if isTest: return # Do not register to kintone if テスト is found at title. Good when testing other parts of the process.
+  if isTest: return # Do not register to kintone if テスト is found in title. Good when testing other parts of the process.
 
   account = pykintone.load(os.path.join(currentPath, f"account-{getAppIdByMailBox(mailTo)}.yml"))
   app = account.app()

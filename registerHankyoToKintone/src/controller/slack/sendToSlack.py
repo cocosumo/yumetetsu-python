@@ -1,4 +1,8 @@
+import json
+from json.encoder import JSONEncoder
 import os
+
+from pykintone import app
 
 from src.helper.utils import getAppIdByMailBox, getGroupIdByMailBox
 
@@ -64,11 +68,15 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
                 "elements": [
 				{
 					"type": "button",
-					"action_id": "add_option",
+					"action_id": "hankyoTaiou",
 					"text": {
 						"type": "plain_text",
-						"text": "Add another option  "
-					}
+						"text": "対応します"
+					},
+                    "value" : json.dumps({
+                        "appId" : _app_id,
+                        "recordId" : recordId
+                    })
 				}
 			]
 		})
