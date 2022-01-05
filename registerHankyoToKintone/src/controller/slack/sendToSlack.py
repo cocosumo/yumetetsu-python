@@ -58,9 +58,21 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
 
     ]
 
-
-
     if not recordId == None:
+        _blocks.append({
+                "type": "actions",
+                "elements": [
+				{
+					"type": "button",
+					"action_id": "add_option",
+					"text": {
+						"type": "plain_text",
+						"text": "Add another option  "
+					}
+				}
+			]
+		})
+
         _blocks.append({
             "type": "section",
             "text":
@@ -69,9 +81,10 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
                 "text": f"*<{_kintoneDomain}/k/{_app_id}/show#record={recordId}|Kintoneで開く>*"
             },
         }
-        )
+      )
 
-    print("recordId", recordId)
+
+
     try:
         # Call the conversations.list method using the WebClient
         result = _client.chat_postMessage(

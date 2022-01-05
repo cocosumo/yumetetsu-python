@@ -3,9 +3,9 @@ import os
 import pykintone
 
 from src.model.Hankyo import Hankyo
-from src.helper.slack import sendToSlackFormatted
+from src.controller.slack.sendToSlack import sendToSlackFormatted
 from src.helper.args import getArgByIdx
-from src.helper.utils import getAppIdByMailBox, getAppTokenByMailBox
+from src.helper.utils import getAppIdByMailBox
 
 #Environment variable loader
 from dotenv import load_dotenv
