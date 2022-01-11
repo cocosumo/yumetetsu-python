@@ -81,18 +81,6 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
 			]
 		})
 
-        _blocks.append({
-            "type": "section",
-            "text":
-            {
-                "type": "mrkdwn",
-                "text": f"*<{_kintoneDomain}/k/{_app_id}/show#record={recordId}|Kintoneで開く>*"
-            },
-        }
-      )
-
-
-
     try:
         # Call the conversations.list method using the WebClient
         result = _client.chat_postMessage(
