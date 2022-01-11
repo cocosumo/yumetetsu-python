@@ -81,6 +81,21 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
 			]
 		})
 
+        _blocks.append({
+                'type': 'context',
+                'elements': [
+                    {
+                        'type': 'image',
+                        'image_url': 'https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg',
+                        'alt_text': 'cute cat',
+                    },
+                    {
+                        'type': 'mrkdwn',
+                        'text': f"*<https://rdmuhwtt6gx7.cybozu.com/k/{_app_id}/show#record={recordId} | キントーンで見る>*",
+                    },
+                ],
+            },)
+
     try:
         # Call the conversations.list method using the WebClient
         result = _client.chat_postMessage(
