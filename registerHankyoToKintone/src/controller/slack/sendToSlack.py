@@ -101,7 +101,6 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
             blocks=_blocks
 
         )
-        # Print result, which includes information about the message (like TS)
-        print(result)
+        return result
     except SlackApiError as e:
         print(f"Error: {e}")

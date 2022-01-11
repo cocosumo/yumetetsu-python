@@ -9,3 +9,5 @@ class Hankyo(model.kintoneModel):
         self.mail_from=""
         self.mail_to=""
         self.main=""
+        self.slackChannel=""
+        self.slackTS=""

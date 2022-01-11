@@ -1,11 +1,10 @@
 import os
-
 import pykintone
-
-from src.model.Hankyo import Hankyo
+from src.controller.kintone.record import register, putSlack
 from src.controller.slack.sendToSlack import sendToSlackFormatted
 from src.helper.args import getArgByIdx
 from src.helper.utils import getAppIdByMailBox
+
 
 #Environment variable loader
 from dotenv import load_dotenv
@@ -14,34 +13,6 @@ load_dotenv()
 #Initialize App
 import pathlib
 currentPath = pathlib.Path(__file__).parent.resolve()
-
-
-
-def registerToKintone(title, main, mailTo, mailFrom):
-  # Still not sure how to use yml so I made separate settings. 2021/12/21
-  # Decision between or hankyo or not is processed at Outlook.
-
-  isTest = ("テスト" in title)
-
-  if isTest: return # Do not register to kintone if テスト is found in title. Good when testing other parts of the process.
-
-  account = pykintone.load(os.path.join(currentPath, f"account-{getAppIdByMailBox(mailTo)}.yml"))
-  app = account.app()
-  print(app, f"account-{getAppIdByMailBox(mailTo)}.yml", mailTo,  "TEST")
-  try:
-    print("Trying to register.")
-    record = Hankyo()
-    record.title = title
-    record.main = main
-    record.mail_to = mailTo
-    record.mail_from  = mailFrom
-    result = app.create(record)
-    print(result.record_id, "result")
-    return result.record_id
-  except:
-    print("Failed")
-
-
 
 def main():
 
@@ -55,9 +26,14 @@ def main():
   _mailTo = getArgByIdx(3)
   _mailFrom = getArgByIdx(4)
 
-  _recordId = registerToKintone(title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=getArgByIdx(4))
+  _account = pykintone.load(os.path.join(currentPath, f"account-{getAppIdByMailBox(_mailTo)}.yml"))
 
-  sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)
+  _recordId = register(account=_account, title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=getArgByIdx(4))
+
+  postMessageResult = sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)
+  putSlack(account=_account,recordId=_recordId, slackPostMessageResult=postMessageResult)
+
+
 
 if __name__ == "__main__":
   main()
