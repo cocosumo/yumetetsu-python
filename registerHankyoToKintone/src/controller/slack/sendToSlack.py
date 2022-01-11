@@ -86,12 +86,12 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
                 'elements': [
                     {
                         'type': 'image',
-                        'image_url': 'https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg',
-                        'alt_text': 'cute cat',
+                        'image_url': 'https://i.ibb.co/9TSqP8V/kintone-logo.png',
+                        'alt_text': 'kintone',
                     },
                     {
                         'type': 'mrkdwn',
-                        'text': f"*<https://rdmuhwtt6gx7.cybozu.com/k/{_app_id}/show#record={recordId} | キントーンで見る>*",
+                        'text': f"*キントーンで* *<https://rdmuhwtt6gx7.cybozu.com/k/{_app_id}/show#record={recordId} | 見る>* ・ *<https://rdmuhwtt6gx7.cybozu.com/k/{_app_id}/show#record={recordId}&mode=edit | 編集>*",
                     },
                 ],
             },)
