@@ -30,7 +30,10 @@ def main():
 
   _recordId = register(account=_account, title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=getArgByIdx(4))
 
+  print("New Kintone recordId: ",_recordId)
   postMessageResult = sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)
+  print("slackMessage Sent: ", postMessageResult)
+
   putSlack(account=_account,recordId=_recordId, slackPostMessageResult=postMessageResult)
 
 

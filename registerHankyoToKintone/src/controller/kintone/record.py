@@ -32,6 +32,7 @@ def register(account: pykintone, title, main, mailTo, mailFrom):
 def putSlack(account: pykintone, recordId, slackPostMessageResult):
   app = account.app()
 
+  print("app details.",app)
   try:
     print("Trying to register.")
     records = app.select(f"$id=\"{recordId}\"").models(Hankyo)
