@@ -48,7 +48,8 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
             "text":
             {
                 "type": "plain_text",
-                "text": f"新たな{messageHeader}がありました。"
+                "text": f":new: 新たな{messageHeader}がありました。",
+                "emoji": True
             }
         },
         {
