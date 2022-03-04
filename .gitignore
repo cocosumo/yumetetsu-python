@@ -132,3 +132,4 @@ dmypy.json
 # custom
 .csv
 account*.y*ml
+registerHankyoToKintone/bash.exe.stackdump

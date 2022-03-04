@@ -1,6 +1,7 @@
 ###### Requirements without Version Specifiers ######`
 pykintone
 slack_sdk
+python-dotenv
 
 ###### Requirements with Version Specifiers ######`
 PyYAML == 5.4.1
