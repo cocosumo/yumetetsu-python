@@ -26,8 +26,6 @@ def main():
   upload_to_kintone()
   clean()
 
-
-
 if __name__ == "__main__":
   main()
 

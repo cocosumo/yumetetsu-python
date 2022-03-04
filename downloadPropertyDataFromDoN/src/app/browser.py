@@ -9,8 +9,11 @@ print(userAgent)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 chrome_options.add_argument(f'user-agent={userAgent}')
+
+# Following 2 lines make the browser headless.
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--headless")
+
 chrome_options.add_experimental_option("prefs", {
     "profile.managed_default_content_settings.images": 2,
     'download.default_directory': get_process_dir()
@@ -35,7 +38,7 @@ def every_downloads_chrome(driver):
       """)
 
 def wait_for_downloads(dir):
-    max_delay = 120
+    max_delay = 1000
     interval_delay = 0.2
     total_delay = 0
     file = ''
