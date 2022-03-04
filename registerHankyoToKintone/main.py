@@ -26,7 +26,7 @@ def main():
   _mailTo = getArgByIdx(3)
   _mailFrom = getArgByIdx(4)
 
-  _account = pykintone.load(os.path.join(currentPath, f"account-{getAppIdByMailBox(_mailTo)}.yml"))
+  _account = pykintone.load(os.path.join(currentPath, "account.yml"))
 
   _recordId = register(account=_account, title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=getArgByIdx(4))
 

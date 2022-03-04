@@ -4,7 +4,7 @@ import os
 
 from pykintone import app
 
-from src.helper.utils import getAppIdByMailBox, getGroupIdByMailBox
+from src.helper.utils import getGroupIdByMailBox
 
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
@@ -22,7 +22,7 @@ _client = WebClient(token=_slack_token)
 
 def generateEditLink(record_id):
     # 例：https://rdmuhwtt6gx7.cybozu.com/k/155/show#record=23
-    return f"{_kintoneDomain}/k/155/show#record={record_id}"
+    return f"{_kintoneDomain}/k/187/show#record={record_id}"
 
 
 def sendToSlack(recordId, title):
@@ -39,7 +39,7 @@ def sendToSlackFormatted(recordId, title, mailTo, mailFrom):
 
     _channel_id = getGroupIdByMailBox(
         "テスト") if isTest else getGroupIdByMailBox(mailTo)
-    _app_id = getAppIdByMailBox(mailTo)
+    _app_id = 187
 
     # Content of the message
     _blocks = [
