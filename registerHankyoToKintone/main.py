@@ -22,13 +22,15 @@ def main():
   # 3 = mailTo
   # 4 = mailFrom
 
+  # Add stores at helper/utils
+
   _title = getArgByIdx(1)
   _mailTo = getArgByIdx(3)
   _mailFrom = getArgByIdx(4)
 
   _account = pykintone.load(os.path.join(currentPath, "account.yml"))
 
-  _recordId = register(account=_account, title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=getArgByIdx(4))
+  _recordId = register(account=_account, title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=_mailFrom)
 
   print("New Kintone recordId: ",_recordId)
   postMessageResult = sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)

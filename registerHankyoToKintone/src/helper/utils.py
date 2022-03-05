@@ -9,6 +9,7 @@ load_dotenv()
 _mailBoxesToyokawa = ["yawata@yumetetsu.jp", "info@yumetetsu.jp"]
 _mailBoxesFujisawa = ["fujisawa@yumetetsu.jp", "toyohashi@yumetetsu.jp"]
 _mailBoxesToyota = ["house-do@toyota-do.com"]
+_mailBoxesNakagawa = ["yaguma@yumetetsu.jp"]
 
 def getGroupIdByMailBox(mailBox):
   print(f"Retrieving Channel id : {mailBox}")
@@ -18,6 +19,8 @@ def getGroupIdByMailBox(mailBox):
     return os.getenv('SLACK_CHANNEL_ID_TOYOKAWA')
   elif (mailBox in _mailBoxesToyota):
     return os.getenv('SLACK_CHANNEL_ID_TOYOTA')
+  elif (mailBox in _mailBoxesNakagawa):
+    return os.getenv('SLACK_CHANNEL_ID_NAKAGAWA')
   else:
     print("Failed to find Channnel Id. Fallback to test.")
     return os.getenv('SLACK_CHANNEL_ID_TEST')
