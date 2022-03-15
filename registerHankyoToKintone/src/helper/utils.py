@@ -9,7 +9,8 @@ load_dotenv()
 _mailBoxesToyokawa = ["yawata@yumetetsu.jp", "info@yumetetsu.jp"]
 _mailBoxesFujisawa = ["fujisawa@yumetetsu.jp", "toyohashi@yumetetsu.jp"]
 _mailBoxesToyota = ["house-do@toyota-do.com"]
-_mailBoxesNakagawa = ["yaguma@yumetetsu.jp"]
+_mailBoxesNakagawa = ["yaguma@yumetetsu.jp", "chikusa@yumetetsu.jp"]
+
 
 def getGroupIdByMailBox(mailBox):
   print(f"Retrieving Channel id : {mailBox}")
