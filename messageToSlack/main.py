@@ -32,8 +32,7 @@ def sendMessage(message, channelId):
             {
               "type": "section",
               "text": {
-                "emoji": True,
-                "type": "plain_text",
+                "type": "mrkdwn",
                 "text": f"{message}"
 
               }
