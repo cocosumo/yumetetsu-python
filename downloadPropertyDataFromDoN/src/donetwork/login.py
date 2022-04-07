@@ -3,6 +3,8 @@ from selenium.webdriver.support.select import Select
 from src.app.browser import chrome
 import os
 
+
+
 def type_username():
   username = os.getenv('DONET_USER')
   username_element = chrome.find_element_by_name("user_id")
@@ -32,4 +34,6 @@ def login_to_donetwork():
   type_password()
   select_shop()
   click_submit()
+
+
 

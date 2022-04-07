@@ -40,14 +40,8 @@ def remove_dir(dir = get_process_dir()):
       continue
 
 
-
-
-
-
-
-
 def save_dt_tocsv(dt, path):
-  print("Saving to : ", path)
+  print("Saving to : ", path, len(dt))
   dt.to_csv(path, index=False, encoding='cp932')
 
 def merge_files(dir = get_process_dir()):
@@ -57,7 +51,7 @@ def merge_files(dir = get_process_dir()):
   all_filenames = [i for i in glob.glob(u'*.csv')]
 
   merged_df = pd.concat(
-      [pd.read_csv(f, encoding="cp932") for f in all_filenames ]
+      [pd.read_csv(f, encoding="cp932", dtype="str") for f in all_filenames ]
     ).dropna(axis=1,how="all"
     ).drop(columns=['更新者', '登録者'])
 

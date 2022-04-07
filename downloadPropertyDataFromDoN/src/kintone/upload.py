@@ -16,13 +16,16 @@ def click_browse_file():
 
 
 def upload_file():
-  print("uploading file.")
-  WebDriverWait(chrome, timeout=30).until(
-    EC.presence_of_element_located((By.ID, "fileKey-browse"))
-  )
-  fileEl = chrome.find_element_by_xpath("//input[@type='file']")
+  try:
+    print("uploading file.")
+    WebDriverWait(chrome, timeout=30).until(
+      EC.presence_of_element_located((By.ID, "fileKey-browse"))
+    )
+    fileEl = chrome.find_element_by_xpath("//input[@type='file']")
 
-  fileEl.send_keys(get_merged_file_path())
+    fileEl.send_keys(get_merged_file_path())
+  except:
+    print("Error encountered.")
 
 def confirm_first_line_is_header():
   print("Clicking YES")
@@ -39,7 +42,14 @@ def set_chkbox_key():
   chrome.execute_script("arguments[0].click();", el)
 
 def click_upload():
-  chrome.find_element(By.CLASS_NAME, "button-submit-cybozu").click()
+  try:
+    chrome.find_element(By.ID, "import-uploadForm-gaia").click()
+  except:
+    # Loading a large file might take longer and cause error, so retry.
+    # A more robust solution will be to setup explicit wait but
+    # here's the quick patch. :D
+    click_upload()
+
 
 
 def upload_csv_by_browser():
@@ -53,3 +63,6 @@ def upload_csv_by_browser():
 def upload_to_kintone():
   login_to_kintone()
   upload_csv_by_browser()
+
+
+#upload_to_kintone()

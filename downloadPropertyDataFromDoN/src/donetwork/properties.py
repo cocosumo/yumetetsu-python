@@ -4,6 +4,8 @@ from src.app.browser import chrome, wait_for_downloads
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import NoSuchElementException
 
+# Properties page.
+# 物件管理ページ
 
 def navigate_to_properties():
   print("Navigating to properties folder.")
@@ -55,9 +57,18 @@ def download_files():
       index += 1
 
 
+def setup_form():
+  print("Setting up form.")
+  checkBox_status = chrome.find_elements_by_id("m_estate_filters_estate_status")
+  # Click the second and third checkboxes from the statuses.
+  # Might need to make it more robust if position changes often.
+  checkBox_status[1].click()
+  checkBox_status[2].click()
+
 def download_from_donet_properties():
   print("Downloading from do network.")
   login_to_donetwork()
   navigate_to_properties()
+  setup_form()
   download_files()
 
