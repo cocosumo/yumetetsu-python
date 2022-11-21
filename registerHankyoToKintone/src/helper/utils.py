@@ -7,7 +7,7 @@ load_dotenv()
 # Refactor redundant code.
 
 _mailBoxesToyokawa = ["yawata@yumetetsu.jp", "info@yumetetsu.jp"]
-_mailBoxesFujisawa = ["fujisawa@yumetetsu.jp", "toyohashi@yumetetsu.jp"]
+_mailBoxesFujisawa = ["fujisawa@yumetetsu.jp", "toyohashi@yumetetsu.jp", "iwata@yumetetsu.jp"]
 _mailBoxesToyota = ["house-do@toyota-do.com"]
 _mailBoxesNakagawa = ["yaguma@yumetetsu.jp", "chikusa@yumetetsu.jp"]
 _mailBoxesTakahama = ["takahama@yumetetsu.jp"]
