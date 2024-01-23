@@ -3,7 +3,6 @@ import pykintone
 from src.controller.kintone.record import register, putSlack
 from src.controller.slack.sendToSlack import sendToSlackFormatted
 from src.helper.args import getArgByIdx
-from src.helper.utils import getAppIdByMailBox
 
 
 #Environment variable loader
@@ -33,6 +32,7 @@ def main():
   _recordId = register(account=_account, title=_title, main=getArgByIdx(2), mailTo=_mailTo, mailFrom=_mailFrom)
 
   print("New Kintone recordId: ",_recordId)
+  print("Mail to: ",_mailTo)
   postMessageResult = sendToSlackFormatted(_recordId, _title, _mailTo, _mailFrom)
   print("slackMessage Sent: ", postMessageResult)
 
