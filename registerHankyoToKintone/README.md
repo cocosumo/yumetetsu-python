@@ -23,11 +23,12 @@ py main.py <title> <content> <mail_to> <mail_from>
 
  1. Open terminal on registerHankyoKintone
  2. Edit test.py accordingly.
- 3. Optionally. Return test.py to its original form to prevent running it on prod.
+ 3. run
 
 ```
-     py main.py <title> <body> <mailTo@mail.com> <mailFrom@mail.com>
+     py test.py
 ```
+
 
 ## Contributing
 
